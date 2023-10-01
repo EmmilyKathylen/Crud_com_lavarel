@@ -23,7 +23,7 @@ class UserController extends Controller
     {
         $users = $this-> user->all();
 
-        return view('users', ['users' => $user]);
+        return view('users', ['users' => $users]);
     }
 
     /**
@@ -31,7 +31,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        return view('users.create');
+        return view('user_create');
     }
 
     /**
@@ -57,7 +57,7 @@ class UserController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(user $user)
     {
         return view("user_show", ["user" => $user]);
     }
@@ -65,7 +65,7 @@ class UserController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(User $user)
     {
         return view('user_edit', ['user' => $user]);
     }
@@ -75,7 +75,7 @@ class UserController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $updated = $this->user->where('id', $id)->update($request->except(['token', _method]));
+        $updated = $this->user->where('id', $id)->update($request->except(['_token', '_method']));
 
         if ($updated) {
             return redirect()->back()->with('message', 'successfully updated');

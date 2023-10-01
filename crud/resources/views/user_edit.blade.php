@@ -6,9 +6,10 @@
 
 @if (session()->has('message'))
  {{ session()->get('message') }}
+ @endif
 
-<form action=" {{ router('users.update', ['user' => $user->id]) }}" method="post">
-    @csrf
+<form action=" {{ route('users.update',['user' => $user->id]) }}" method="post">
+    @csrf {{-- cross site request forgery --}}
     <input type="hidden" name="_method" value="PUT">
     <input type="text" name="firstName" value="{{ $user->firstName }}" >
     <input type="text" name="lastName" value="{{ $user->lastName }}" >

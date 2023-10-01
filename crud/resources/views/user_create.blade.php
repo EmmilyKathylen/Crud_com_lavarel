@@ -6,8 +6,8 @@
 
 @if (session()->has('message'))
  {{ session()->get('message') }}
-
-<form action=" {{ router('users.store')}}" method="post">
+@endif
+<form action="{{ route('users.store') }}" method="post">
     @csrf
     <input type="text" name="firstName" placeholder="seu primeiro nome" >
     <input type="text" name="lastName" placeholder=" seu sobrenome" >
